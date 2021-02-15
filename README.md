@@ -51,7 +51,8 @@ Use o README para criar as instruções de como rodar o projeto.
 
 
 ## O que esperamos
-Que você use dotnet core e swagger para a documentação dos endpoints, já o banco de dados fica a sua escolha =]
+Que você use dotnet core e swagger para a documentação dos endpoints, já o banco de dados fica a sua escolha.
+Você pode utilizar ORMs como ef-core, dapper e etc mas que justifique a sua escolha =]
 
 ## O que vamos avaliar
 - Se os objetivos do desafio foram alcançados;  =]
