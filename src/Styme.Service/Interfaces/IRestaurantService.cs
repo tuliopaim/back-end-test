@@ -22,6 +22,6 @@ namespace Styme.Service.Interfaces
 
         Task<ServiceResult> SelectById(long id);
 
-        Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(PaginatedFilter filter);
+        Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(RestaurantPaginatedFilter filter);
     }
 }

@@ -109,11 +109,11 @@ namespace Styme.API.Controllers
             }
         }
 
-        /// <summary>
-        /// 
+        /// <summary> 
+        /// Busca restaurantes de forma paginada, filtrando e ordenando por Name
         /// </summary>
         [HttpPost("paginated-filter")]
-        public async Task<ActionResult<PaginatedResult<RestaurantOutputModel>>> GetPaginated([FromBody] PaginatedFilter filter)
+        public async Task<ActionResult<PaginatedResult<RestaurantOutputModel>>> GetPaginated([FromBody] RestaurantPaginatedFilter filter)
         {
             return await _service.SelectPaginated(filter);
         }

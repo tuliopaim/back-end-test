@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Styme.Domain.Filters
 {
-    public class PaginatedFilter
+    public class RestaurantPaginatedFilter
     {
         private int _page;
 
@@ -17,7 +17,9 @@ namespace Styme.Domain.Filters
             set => _page = value == 0 ? 1 : value;
         }
 
-        public string SearchTerm { get; set; }
+        public string Name { get; set; }
+
+        public bool IncludeMenus { get; set; }
 
         public int PageSize { get; set; }
 

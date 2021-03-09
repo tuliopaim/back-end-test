@@ -86,7 +86,7 @@ namespace Styme.Service.Services
             return ServiceResult.SuccessResult(data: output);
         }
 
-        public async Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(PaginatedFilter filter)
+        public async Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(RestaurantPaginatedFilter filter)
         {
             var total = await _repository.TotalWithFilter(filter);
             var results = await _repository.SelectPaginated(filter);

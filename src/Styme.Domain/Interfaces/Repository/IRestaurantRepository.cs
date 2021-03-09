@@ -20,8 +20,8 @@ namespace Styme.Domain.Interfaces.Repository
 
         Task<Restaurant> SelectById(long id);
 
-        Task<List<Restaurant>> SelectPaginated(PaginatedFilter filter);
+        Task<List<Restaurant>> SelectPaginated(RestaurantPaginatedFilter filter);
 
-        Task<long> TotalWithFilter(PaginatedFilter filter);
+        Task<long> TotalWithFilter(RestaurantPaginatedFilter filter);
     }
 }

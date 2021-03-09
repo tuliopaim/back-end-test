@@ -57,15 +57,20 @@ namespace Styme.Data.Repository
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<Restaurant>> SelectPaginated(PaginatedFilter filter)
+        public async Task<List<Restaurant>> SelectPaginated(RestaurantPaginatedFilter filter)
         {
             var query = _context
                 .Restaurants
                 .AsQueryable<Restaurant>();
 
-            if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
+            if (!string.IsNullOrWhiteSpace(filter.Name))
             {
-                query = query.Where(r => r.Name.Contains(filter.SearchTerm));
+                query = query.Where(r => r.Name.Contains(filter.Name));
+            }
+
+            if (filter.IncludeMenus)
+            {
+                query = query.Include(r => r.Menus);
             }
 
             if (filter.OrderByDesc)
@@ -83,11 +88,11 @@ namespace Styme.Data.Repository
                 .ToListAsync();
         }
 
-        public async Task<long> TotalWithFilter(PaginatedFilter filter)
+        public async Task<long> TotalWithFilter(RestaurantPaginatedFilter filter)
         {
             return await _context
                 .Restaurants
-                .Where(r => r.Name.Contains(filter.SearchTerm))
+                .Where(r => r.Name.Contains(filter.Name))
                 .CountAsync();
         }
     }
