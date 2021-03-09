@@ -51,7 +51,9 @@ namespace Styme.Data.Repository
         {
             return await _context
                 .Restaurants
-                .FindAsync(id);
+                .Include(r => r.Menus)
+                .Where(r => r.Id == id)
+                .FirstOrDefaultAsync();
         }
     }
 }

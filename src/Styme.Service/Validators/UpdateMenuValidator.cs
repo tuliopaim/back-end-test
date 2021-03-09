@@ -1,13 +1,15 @@
 ﻿using FluentValidation;
-using Styme.Domain.Entities;
 using Styme.Service.Models.InputModels;
 
 namespace Styme.Service.Validators
 {
-    public class NewMenuValidator : AbstractValidator<NewMenuInputModel>
+    public class UpdateMenuValidator : AbstractValidator<UpdateMenuInputModel>
     {
-        public NewMenuValidator()
+        public UpdateMenuValidator()
         {
+            RuleFor(m => m.Id)
+                .NotEmpty();
+
             RuleFor(r => r.Description)
                 .NotEmpty()
                 .MaximumLength(150);

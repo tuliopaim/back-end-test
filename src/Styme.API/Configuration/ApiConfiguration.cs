@@ -19,6 +19,7 @@ namespace Styme.API.Configuration
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IRestaurantService, RestaurantService>(); 
+            services.AddScoped<IMenuService, MenuService>();
 
             services.AddScoped<IRestaurantRepository, RestaurantRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
@@ -33,6 +34,7 @@ namespace Styme.API.Configuration
                 config.CreateMap<NewRestaurantInputModel, Restaurant>();
                 config.CreateMap<UpdateRestaurantInputModel, Restaurant>();
                 config.CreateMap<NewMenuInputModel, Menu>();
+                config.CreateMap<UpdateMenuInputModel, Menu>();
             }).CreateMapper());
         }
     }
