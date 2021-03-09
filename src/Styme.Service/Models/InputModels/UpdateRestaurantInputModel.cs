@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace Styme.Service.Models.InputModels
 {
-    public class UpdateRestaurantInputModel : IInputModel
+    public class UpdateRestaurantInputModel : IValidationModel
     {
         private readonly UpdateRestaurantValidator _validator;
 

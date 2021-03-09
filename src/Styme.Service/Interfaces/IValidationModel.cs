@@ -2,7 +2,7 @@
 
 namespace Styme.Service.Interfaces
 {
-    public interface IInputModel
+    public interface IValidationModel
     {
         ValidationResult ValidationResult { get; }
 
