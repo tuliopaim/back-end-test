@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Styme.Service\Styme.Service.csproj" />
+    <ProjectReference Include="..\..\src\Styme.Service\Styme.Service.csproj" />
   </ItemGroup>
 
 </Project>
