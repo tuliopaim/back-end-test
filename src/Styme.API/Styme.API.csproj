@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Styme.Domain\Styme.Domain.csproj" />
     <ProjectReference Include="..\Styme.Service\Styme.Service.csproj" />
   </ItemGroup>
