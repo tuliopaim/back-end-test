@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F4579E1-05F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F6C6E6CD-6844-419B-A558-FFD9ABC2F02D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Service.Tests", "Styme.Service.Tests\Styme.Service.Tests.csproj", "{03CEB5C7-E4C2-41F5-B386-1A160870164B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Service.Tests", "tests\Styme.Service.Tests\Styme.Service.Tests.csproj", "{03CEB5C7-E4C2-41F5-B386-1A160870164B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
