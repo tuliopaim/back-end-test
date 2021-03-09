@@ -4,6 +4,7 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
+using Styme.Service.Models.OutputModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,14 +73,18 @@ namespace Styme.Service.Services
         {
             var menus = await _repository.Select();
 
-            return ServiceResult.SuccessResult(data: menus);
+            var output = menus?.Select(_mapper.Map<MenuOutputModel>);
+
+            return ServiceResult.SuccessResult(data: output);
         }
 
         public async Task<ServiceResult> SelectById(long id)
         {
             var menu = await _repository.SelectById(id);
 
-            return ServiceResult.SuccessResult(data: menu);
+            var output = _mapper.Map<MenuOutputModel>(menu);
+
+            return ServiceResult.SuccessResult(data: output);
         }
     }
 }

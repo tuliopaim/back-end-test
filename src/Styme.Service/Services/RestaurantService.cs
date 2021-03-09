@@ -4,7 +4,7 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
-using System.Collections.Generic;
+using Styme.Service.Models.OutputModels;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -70,20 +70,18 @@ namespace Styme.Service.Services
         {
             var restaurants = await _repository.Select();
 
-            return ServiceResult.SuccessResult(data: restaurants);
+            var output = restaurants?.Select(_mapper.Map<RestaurantOutputModel>);
+
+            return ServiceResult.SuccessResult(data: output);
         }
 
         public async Task<ServiceResult> SelectById(long id)
         {
             var restaurant = await _repository.SelectById(id);
 
-            //TODO: Retornar DTOs para evitar loop
-            foreach(var menu in restaurant?.Menus ?? new List<Menu>())
-            {
-                menu.Restaurant = null;
-            } 
+            var output = _mapper.Map<RestaurantOutputModel>(restaurant);
 
-            return ServiceResult.SuccessResult(data: restaurant);
+            return ServiceResult.SuccessResult(data: output);
         }
     }
 }

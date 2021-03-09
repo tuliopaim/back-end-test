@@ -32,8 +32,8 @@ namespace Styme.API.Configuration
                 config.CreateMap<NewMenuInputModel, Menu>();
                 config.CreateMap<UpdateMenuInputModel, Menu>();
 
-                config.CreateMap<RestaurantOutputModel, Restaurant>();
-                config.CreateMap<MenuOutputModel, Menu>();
+                config.CreateMap<Restaurant, RestaurantOutputModel>();
+                config.CreateMap<Menu, MenuOutputModel>();
             }).CreateMapper());
         }
     }
