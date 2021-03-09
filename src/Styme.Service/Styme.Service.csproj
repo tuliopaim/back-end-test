@@ -22,8 +22,4 @@
     <ProjectReference Include="..\Styme.Domain\Styme.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Filters\" />
-  </ItemGroup>
-
 </Project>
