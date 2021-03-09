@@ -13,7 +13,7 @@ namespace Styme.Domain.Interfaces.Repository
 
         Task Update(Restaurant restaurant);
 
-        Task Delete(long id);
+        Task<bool> Delete(long id);
 
         Task<IList<Restaurant>> Select();
 

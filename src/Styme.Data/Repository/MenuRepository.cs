@@ -28,12 +28,16 @@ namespace Styme.Data.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(long id)
+        public async Task<bool> Delete(long id)
         {
             var menu = await SelectById(id);
-            _context.Remove(menu);
+            
+            if (menu is not null)
+            {
+                _context.Remove(menu);
+            }
 
-            await _context.SaveChangesAsync();
+            return (await _context.SaveChangesAsync()) > 0;
         }
 
         public async Task<IList<Menu>> Select()
