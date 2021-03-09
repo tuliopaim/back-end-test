@@ -114,7 +114,12 @@ namespace Styme.API.Controllers
         [HttpPost("paginated-filter")]
         public async Task<ActionResult<PaginatedResult<RestaurantOutputModel>>> GetPaginated([FromBody] RestaurantPaginatedFilter filter)
         {
-            return await _service.SelectPaginated(filter);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return await _service.SelectPaginated(filter);            
         }
     }
 }
