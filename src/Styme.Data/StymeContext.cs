@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Styme.Data.Configuration;
 using Styme.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Styme.Data
 {

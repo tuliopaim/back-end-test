@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Styme.Domain.Entities;
 using Styme.Domain.Interfaces.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Styme.Data.Repository

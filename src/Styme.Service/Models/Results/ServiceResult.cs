@@ -31,10 +31,10 @@ namespace Styme.Service.Models.Results
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Message { get; set; }
 
-        public bool Success { get; set; }
-
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<string> Errors { get; set; }
+
+        public bool Success { get; set; }
 
         public static ServiceResult SuccessResult (object data = null, string message = null)
         {

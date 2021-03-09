@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using Styme.Domain.Entities;
 using Styme.Service.Models.InputModels;
 
 namespace Styme.Service.Validators

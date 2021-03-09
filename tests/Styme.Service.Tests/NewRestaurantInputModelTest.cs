@@ -1,5 +1,4 @@
 using Styme.Service.Models.InputModels;
-using System;
 using Xunit;
 
 namespace Styme.Service.Tests

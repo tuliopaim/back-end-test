@@ -3,7 +3,6 @@ using Styme.Domain.Entities;
 using Styme.Domain.Filters;
 using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
-using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
 using Styme.Service.Models.Results;
@@ -55,7 +54,7 @@ namespace Styme.Service.Services
 
         public async Task<ServiceResult> Delete(long id)
         {
-            if(id == 0)
+            if(id <= 0)
             {
                 ServiceResult.ErrorResult(message: "Id inválido");
             }
@@ -74,16 +73,25 @@ namespace Styme.Service.Services
 
             var output = restaurants?.Select(_mapper.Map<RestaurantOutputModel>);
 
-            return ServiceResult.SuccessResult(data: output);
+            return output is null
+                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
+                : ServiceResult.SuccessResult(data: output);
         }
 
         public async Task<ServiceResult> SelectById(long id)
         {
+            if (id <= 0)
+            {
+                ServiceResult.ErrorResult(message: "Id inválido");
+            }
+
             var restaurant = await _repository.SelectById(id);
 
             var output = _mapper.Map<RestaurantOutputModel>(restaurant);
 
-            return ServiceResult.SuccessResult(data: output);
+            return output is null
+                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
+                : ServiceResult.SuccessResult(data: output);
         }
 
         public async Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(RestaurantPaginatedFilter filter)

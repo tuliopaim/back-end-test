@@ -7,6 +7,10 @@ using Styme.Service.Services;
 using Styme.Service.Models.InputModels;
 using Styme.Domain.Entities;
 using Styme.Service.Models.OutputModels;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace Styme.API.Configuration
 {
@@ -35,6 +39,18 @@ namespace Styme.API.Configuration
                 config.CreateMap<Restaurant, RestaurantOutputModel>();
                 config.CreateMap<Menu, MenuOutputModel>();
             }).CreateMapper());
+        }
+
+        public static void RegisterSwagger(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Styme.API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
     }
 }

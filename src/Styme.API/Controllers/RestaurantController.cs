@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Styme.Domain.Filters;
 using Styme.Service.Interfaces;
-using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
 using Styme.Service.Models.Results;
@@ -9,7 +8,7 @@ using System;
 using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
-{    
+{
     public class RestaurantController : BaseController
     {
         private readonly IRestaurantService _service;

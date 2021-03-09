@@ -1,9 +1,6 @@
 ﻿using Styme.Domain.Entities;
 using Styme.Domain.Filters;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Styme.Domain.Interfaces.Repository
