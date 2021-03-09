@@ -4,6 +4,8 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Styme.Service.Services
@@ -21,58 +23,61 @@ namespace Styme.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<ServiceResultModel> Add(NewRestaurantInputModel input)
+        public async Task<ServiceResult> Add(NewRestaurantInputModel input)
         {
-            if (!input.ItsValid)
+            if (!input.IsValid)
             {
-                return new ServiceResultModel(input.ValidationResult);
+                return new ServiceResult(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Insert(restaurant);
 
-            return ServiceResultModel.Success();
+            return ServiceResult.SuccessResult();
         }
 
-        public async Task<ServiceResultModel> Update(UpdateRestaurantInputModel input)
+        public async Task<ServiceResult> Update(UpdateRestaurantInputModel input)
         {
-            if (!input.ItsValid)
+            if (!input.IsValid)
             {
-                return new ServiceResultModel(input.ValidationResult);
+                return new ServiceResult(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Update(restaurant);
 
-            return ServiceResultModel.Success();
+            return ServiceResult.SuccessResult();
         }
 
-        public async Task<ServiceResultModel> Delete(long id)
+        public async Task<ServiceResult> Delete(long id)
         {
             if(id == 0)
             {
-                ServiceResultModel.Error(message: "Invalid id");
+                ServiceResult.ErrorResult(message: "Id inválido");
             }
 
-            await _repository.Delete(id);
+            if(await _repository.Delete(id))
+            {
+                return ServiceResult.SuccessResult(message: "Removido com sucesso");
+            }
 
-            return ServiceResultModel.Success();
+            return ServiceResult.ErrorResult(message: "Não encontrado");
         }
 
-        public async Task<ServiceResultModel> Select()
+        public async Task<ServiceResult> Select()
         {
             var restaurants = await _repository.Select();
 
-            return ServiceResultModel.Success(data: restaurants);
+            return ServiceResult.SuccessResult(data: restaurants);
         }
 
-        public async Task<ServiceResultModel> SelectById(long id)
+        public async Task<ServiceResult> SelectById(long id)
         {
             var restaurant = await _repository.SelectById(id);
         
-            return ServiceResultModel.Success(data: restaurant);
+            return ServiceResult.SuccessResult(data: restaurant);
         }
     }
 }

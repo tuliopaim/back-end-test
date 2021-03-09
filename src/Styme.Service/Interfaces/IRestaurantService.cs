@@ -1,19 +1,21 @@
-﻿using Styme.Service.Models;
+﻿using Styme.Domain.Entities;
+using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.Service.Interfaces
 {
     public interface IRestaurantService
     {
-        Task<ServiceResultModel> Add(NewRestaurantInputModel input);
+        Task<ServiceResult> Add(NewRestaurantInputModel input);
 
-        Task<ServiceResultModel> Update(UpdateRestaurantInputModel input);
+        Task<ServiceResult> Update(UpdateRestaurantInputModel input);
 
-        Task<ServiceResultModel> Delete(long id);
+        Task<ServiceResult> Delete(long id);
 
-        Task<ServiceResultModel> Select();
+        Task<ServiceResult> Select();
 
-        Task<ServiceResultModel> SelectById(long id);
+        Task<ServiceResult> SelectById(long id);
     }
 }
