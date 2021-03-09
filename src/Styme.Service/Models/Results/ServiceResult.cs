@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace Styme.Service.Models
+namespace Styme.Service.Models.Results
 {
     public class ServiceResult
     {

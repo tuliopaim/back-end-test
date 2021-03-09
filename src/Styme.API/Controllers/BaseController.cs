@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Styme.Service.Models;
+using Styme.Service.Models.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
