@@ -2,6 +2,7 @@
 using Styme.Service.Interfaces;
 using Styme.Service.Validators;
 using System;
+using System.Text.Json.Serialization;
 
 namespace Styme.Service.Models.InputModels
 {
@@ -20,8 +21,10 @@ namespace Styme.Service.Models.InputModels
         public string Category { get; set; }
         public long RestaurantId { get; set; }
 
+        [JsonIgnore]
         public ValidationResult ValidationResult => _validator.Validate(this);
 
-        public bool ItsValid => ValidationResult.IsValid;
+        [JsonIgnore]
+        public bool IsValid => ValidationResult.IsValid;
     }
 }

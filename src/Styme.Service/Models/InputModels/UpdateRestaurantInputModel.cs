@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Styme.Service.Models.InputModels
@@ -25,8 +26,10 @@ namespace Styme.Service.Models.InputModels
         public string Location { get; set; }
         public Uri ImageUri { get; set; }
 
+        [JsonIgnore]
         public ValidationResult ValidationResult => _validator.Validate(this);
 
-        public bool ItsValid => ValidationResult.IsValid;
+        [JsonIgnore]
+        public bool IsValid => ValidationResult.IsValid;
     }
 }
