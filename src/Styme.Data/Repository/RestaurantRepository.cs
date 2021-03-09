@@ -68,6 +68,15 @@ namespace Styme.Data.Repository
                 query = query.Where(r => r.Name.Contains(filter.SearchTerm));
             }
 
+            if (filter.OrderByDesc)
+            {
+                query = query.OrderByDescending(r => r.Name);
+            }
+            else
+            {
+                query = query.OrderBy(r => r.Name);
+            }
+
             return await query
                 .Skip(filter.StartIndex)
                 .Take(filter.PageSize)
