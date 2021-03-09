@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
 {
+    [Produces("application/json")]
     [Route("[controller]")]
     [ApiController]
     public abstract class BaseController : Controller
