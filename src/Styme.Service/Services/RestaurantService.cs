@@ -25,55 +25,54 @@ namespace Styme.Service.Services
         {
             if (!input.ItsValid)
             {
-                //return erro
+                return new ServiceResultModel(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Insert(restaurant);
 
-            return new ServiceResultModel();
+            return ServiceResultModel.Success();
         }
 
         public async Task<ServiceResultModel> Update(UpdateRestaurantInputModel input)
         {
             if (!input.ItsValid)
             {
-                //return erro
+                return new ServiceResultModel(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Update(restaurant);
 
-            return new ServiceResultModel();
+            return ServiceResultModel.Success();
         }
 
         public async Task<ServiceResultModel> Delete(long id)
         {
             if(id == 0)
             {
-                //return erro
+                ServiceResultModel.Error(message: "Invalid id");
             }
 
             await _repository.Delete(id);
 
-            return new ServiceResultModel();
+            return ServiceResultModel.Success();
         }
 
         public async Task<ServiceResultModel> Select()
         {
             var restaurants = await _repository.Select();
 
-            return new ServiceResultModel();
+            return ServiceResultModel.Success(data: restaurants);
         }
 
         public async Task<ServiceResultModel> SelectById(long id)
         {
             var restaurant = await _repository.SelectById(id);
         
-            return new ServiceResultModel();
+            return ServiceResultModel.Success(data: restaurant);
         }
-
     }
 }
