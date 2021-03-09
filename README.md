@@ -2,11 +2,12 @@
 ## Execução
 - Docker: 
   - 1 - Executar via terminal na raiz da solução
+  
   ```
   docker-compose up
   ```
 - Sem Docker:
-  - 1 - Ter o postgress instalado na maquina
+  - 1 - Ter o postgres instalado na maquina
   - 2 - Rodar a aplicação
   
 ## Arquitetura
@@ -24,7 +25,7 @@
  
  ## Acesso a dados
  - Para o acesso a dados foi escolhido o ORM ef-core, pela facilidade de configuração e desenvolvimento. Quando bem configurado consegue um nível muito alto de performance, sendo facilmente possível inserir o dapper na arquitetura, caso necessário em consultas mais complexas.
- - O banco de dados escolhido foi o postgress, sempre me recomendaram e nunca havia utilizado.
+ - O banco de dados escolhido foi o postgres, sempre me recomendaram e nunca havia utilizado.
 
 # Teste vaga de Back-end da STYME
 Este é o teste que nós aqui da STYME usamos para avaliar os candidatos para a vagas de back-end.
