@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Service", "3-Service", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Data", "4-Data", "{BAE0B486-6DD5-4D7F-B8A1-0D2DC9314A31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Styme.API", "Styme.API\Styme.API.csproj", "{FE390FF2-9B89-4165-AAE7-3483BFB98BBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Styme.API", "src\Styme.API\Styme.API.csproj", "{FE390FF2-9B89-4165-AAE7-3483BFB98BBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Domain", "Styme.Domain\Styme.Domain.csproj", "{E57AC4F5-94ED-405E-B8D1-A96C24B49A97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Domain", "src\Styme.Domain\Styme.Domain.csproj", "{E57AC4F5-94ED-405E-B8D1-A96C24B49A97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Service", "Styme.Service\Styme.Service.csproj", "{668D6103-3EE3-4E45-AF91-6E081A8C54F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Service", "src\Styme.Service\Styme.Service.csproj", "{668D6103-3EE3-4E45-AF91-6E081A8C54F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Data", "Styme.Data\Styme.Data.csproj", "{9F1B203B-6969-4A3D-8402-E7E0170932B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Styme.Data", "src\Styme.Data\Styme.Data.csproj", "{9F1B203B-6969-4A3D-8402-E7E0170932B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

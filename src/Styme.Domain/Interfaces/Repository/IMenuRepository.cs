@@ -9,14 +9,14 @@ namespace Styme.Domain.Interfaces.Repository
 {
     public interface IMenuRepository
     {
-        void Insert(Menu menu);
+        Task Insert(Menu menu);
 
-        void Update(Menu menu);
+        Task Update(Menu menu);
 
-        void Delete(Menu menu);
+        Task Delete(long id);
 
-        IList<Menu> Select();
+        Task<IList<Menu>> Select();
 
-        Menu SelectById(long id);
+        Task<Menu> SelectById(long id);
     }
 }

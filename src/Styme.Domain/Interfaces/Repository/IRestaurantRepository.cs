@@ -9,14 +9,14 @@ namespace Styme.Domain.Interfaces.Repository
 {
     public interface IRestaurantRepository
     {
-        void Insert(Restaurant restaurant);
+        Task Insert(Restaurant restaurant);
 
-        void Update(Restaurant restaurant);
+        Task Update(Restaurant restaurant);
 
-        void Delete(Restaurant restaurant);
+        Task Delete(long id);
 
-        IList<Restaurant> Select();
+        Task<IList<Restaurant>> Select();
 
-        Restaurant SelectById(long id);
+        Task<Restaurant> SelectById(long id);
     }
 }
