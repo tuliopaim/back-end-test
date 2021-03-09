@@ -56,7 +56,7 @@ namespace Styme.Service.Services
         {
             if(id <= 0)
             {
-                ServiceResult.ErrorResult(message: "Id inválido");
+                return ServiceResult.ErrorResult(message: "Id inválido");
             }
 
             if(await _repository.Delete(id))
@@ -82,7 +82,7 @@ namespace Styme.Service.Services
         {
             if (id <= 0)
             {
-                ServiceResult.ErrorResult(message: "Id inválido");
+                return ServiceResult.ErrorResult(message: "Id inválido");
             }
 
             var restaurant = await _repository.SelectById(id);
