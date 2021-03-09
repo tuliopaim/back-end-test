@@ -37,7 +37,7 @@ namespace Styme.Data.Configuration
                 .HasColumnType("varchar(200)");
 
             builder.HasMany(r => r.Menus)
-                .WithOne()
+                .WithOne(m => m.Restaurant)
                 .HasForeignKey(m => m.RestaurantId);
         }
     }

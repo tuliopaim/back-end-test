@@ -31,10 +31,6 @@ namespace Styme.Data.Configuration
             builder.Property(m => m.Category)
                 .IsRequired()
                 .HasColumnType("varchar(50)");
-
-            builder.HasOne(m => m.Restaurant)
-                .WithMany()
-                .HasForeignKey(m => m.RestaurantId);
         }
     }
 }

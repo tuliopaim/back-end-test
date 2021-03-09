@@ -76,7 +76,13 @@ namespace Styme.Service.Services
         public async Task<ServiceResult> SelectById(long id)
         {
             var restaurant = await _repository.SelectById(id);
-        
+
+            //TODO: Retornar DTOs para evitar loop
+            foreach(var menu in restaurant?.Menus ?? new List<Menu>())
+            {
+                menu.Restaurant = null;
+            } 
+
             return ServiceResult.SuccessResult(data: restaurant);
         }
     }

@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Styme.Data.Migrations
 {
-    public partial class FirstMigration : Migration
+    public partial class CorrigeFK : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,8 +34,7 @@ namespace Styme.Data.Migrations
                     Price = table.Column<decimal>(type: "numeric(19,2)", nullable: false),
                     ImageUri = table.Column<string>(type: "varchar(200)", nullable: true),
                     Category = table.Column<string>(type: "varchar(50)", nullable: false),
-                    RestaurantId = table.Column<long>(type: "bigint", nullable: false),
-                    RestaurantId1 = table.Column<long>(type: "bigint", nullable: true)
+                    RestaurantId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,23 +45,12 @@ namespace Styme.Data.Migrations
                         principalTable: "Restaurants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Menus_Restaurants_RestaurantId1",
-                        column: x => x.RestaurantId1,
-                        principalTable: "Restaurants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Menus_RestaurantId",
                 table: "Menus",
                 column: "RestaurantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Menus_RestaurantId1",
-                table: "Menus",
-                column: "RestaurantId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
