@@ -24,22 +24,28 @@ namespace Styme.Data.Repository
         }
         public async Task Update(Menu menu)
         {
-            throw new NotImplementedException();
+            _context.Menus.Update(menu);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(long id)
         {
-            throw new NotImplementedException();
+            var menu = await SelectById(id);
+            _context.Remove(menu);
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IList<Menu>> Select()
         {
-            throw new NotImplementedException();
+            return await _context.Menus.ToListAsync();
         }
 
         public async Task<Menu> SelectById(long id)
         {
-            throw new NotImplementedException();
+            return await _context
+                .Menus
+                .FindAsync(id);
         }
     }
 }
