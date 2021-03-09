@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Styme.Domain.Filters;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
+using Styme.Service.Models.OutputModels;
 using Styme.Service.Models.Results;
 using System;
 using System.Threading.Tasks;
@@ -105,6 +107,15 @@ namespace Styme.API.Controllers
             {
                 return ReturnResult(ex);
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpPost("paginated-filter")]
+        public async Task<ActionResult<PaginatedResult<RestaurantOutputModel>>> GetPaginated([FromBody] PaginatedFilter filter)
+        {
+            return await _service.SelectPaginated(filter);
         }
     }
 }

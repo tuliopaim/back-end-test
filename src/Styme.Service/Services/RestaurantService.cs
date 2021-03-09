@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Styme.Domain.Entities;
+using Styme.Domain.Filters;
 using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
@@ -83,6 +84,18 @@ namespace Styme.Service.Services
             var output = _mapper.Map<RestaurantOutputModel>(restaurant);
 
             return ServiceResult.SuccessResult(data: output);
+        }
+
+        public async Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(PaginatedFilter filter)
+        {
+            var total = await _repository.TotalWithFilter(filter);
+            var results = await _repository.SelectPaginated(filter);
+
+            return new PaginatedResult<RestaurantOutputModel>(
+                results: results?.Select(_mapper.Map<RestaurantOutputModel>),
+                total: total,
+                page: filter.Page,
+                pageSize: filter.PageSize);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Styme.Domain.Entities;
+using Styme.Domain.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,9 @@ namespace Styme.Domain.Interfaces.Repository
         Task<IList<Restaurant>> Select();
 
         Task<Restaurant> SelectById(long id);
+
+        Task<List<Restaurant>> SelectPaginated(PaginatedFilter filter);
+
+        Task<long> TotalWithFilter(PaginatedFilter filter);
     }
 }

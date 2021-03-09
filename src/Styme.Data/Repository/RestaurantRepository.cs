@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Styme.Domain.Entities;
+using Styme.Domain.Filters;
 using Styme.Domain.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,31 @@ namespace Styme.Data.Repository
                 .Include(r => r.Menus)
                 .Where(r => r.Id == id)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Restaurant>> SelectPaginated(PaginatedFilter filter)
+        {
+            var query = _context
+                .Restaurants
+                .AsQueryable<Restaurant>();
+
+            if (!string.IsNullOrWhiteSpace(filter.SearchTerm))
+            {
+                query = query.Where(r => r.Name.Contains(filter.SearchTerm));
+            }
+
+            return await query
+                .Skip(filter.StartIndex)
+                .Take(filter.PageSize)
+                .ToListAsync();
+        }
+
+        public async Task<long> TotalWithFilter(PaginatedFilter filter)
+        {
+            return await _context
+                .Restaurants
+                .Where(r => r.Name.Contains(filter.SearchTerm))
+                .CountAsync();
         }
     }
 }
