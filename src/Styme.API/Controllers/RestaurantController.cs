@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Styme.Domain.Entities;
 using Styme.Service.Interfaces;
 using Styme.Service.Models;
 using Styme.Service.Models.InputModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
@@ -19,6 +16,9 @@ namespace Styme.API.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Cria um novo restaurante
+        /// </summary>
         [HttpPost]
         public async Task<ActionResult<ServiceResult>> Create([FromBody] NewRestaurantInputModel input)
         {
@@ -34,6 +34,9 @@ namespace Styme.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza um restaurante existente
+        /// </summary>
         [HttpPut]
         public async Task<ActionResult<ServiceResult>> Update([FromBody] UpdateRestaurantInputModel input)
         {
@@ -49,6 +52,9 @@ namespace Styme.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um restaurante existente
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<ActionResult<ServiceResult>> Delete(long id)
         {
@@ -64,6 +70,9 @@ namespace Styme.API.Controllers
             }            
         }
 
+        /// <summary>
+        /// Busca todos os restaurantes
+        /// </summary>
         [HttpGet]
         public async Task<ActionResult<ServiceResult>> Get()
         {
@@ -79,6 +88,9 @@ namespace Styme.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca um restaurante por Id
+        /// </summary>
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResult>> GetById(long id)
         {
