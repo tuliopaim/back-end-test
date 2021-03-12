@@ -1,7 +1,7 @@
 ﻿using Styme.Domain.Filters;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

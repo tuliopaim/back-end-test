@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
 using System;
 
 namespace Styme.API.Controllers

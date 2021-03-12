@@ -4,7 +4,7 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,11 +78,13 @@ namespace Styme.Service.Services
             return Result<IEnumerable<MenuOutputModel>>.SuccessResult(output);
         }
 
-        public async Task<MenuOutputModel> SelectById(long id)
+        public async Task<Result<MenuOutputModel>> SelectById(long id)
         {
             if (id <= 0)
             {
-                return Result.ErrorResult(message: "Id inválido");
+                return Result<MenuOutputModel>
+                    .ErrorResult()
+                    .AddError("Id inválido");
             }
 
             var menu = await _repository.SelectById(id);

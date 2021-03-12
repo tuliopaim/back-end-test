@@ -1,4 +1,6 @@
-﻿namespace Styme.Domain.Filters
+﻿using Styme.Core.Filters;
+
+namespace Styme.Domain.Filters
 {
     public class RestaurantPaginatedFilter : PaginatedFilter
     {

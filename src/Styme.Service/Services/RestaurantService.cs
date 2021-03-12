@@ -5,7 +5,7 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,12 +1,12 @@
 ﻿using FluentValidation.Results;
-using Styme.Service.Interfaces;
+using Styme.Domain.Interfaces;
 using Styme.Service.Validators;
 using System;
 using System.Text.Json.Serialization;
 
 namespace Styme.Service.Models.InputModels
 {
-    public class UpdateRestaurantInputModel : IValidationModel
+    public class UpdateRestaurantInputModel : IValidationModel<UpdateRestaurantInputModel>
     {
         private readonly UpdateRestaurantValidator _validator;
 
