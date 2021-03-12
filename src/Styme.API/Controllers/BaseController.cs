@@ -25,5 +25,23 @@ namespace Styme.API.Controllers
 
             return BadRequest(result);
         }
+
+        protected ActionResult<Result<T>> ReturnResult<T>(
+            Result<T> result)
+        {
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        protected ActionResult<Result<T>> ReturnResult<T>(Exception exception)
+        {
+            var result = new Result(exception);
+
+            return BadRequest(result);
+        }
     }
 }

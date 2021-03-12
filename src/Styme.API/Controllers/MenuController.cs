@@ -4,6 +4,7 @@ using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
@@ -75,7 +76,7 @@ namespace Styme.API.Controllers
         /// Busca todos os menus
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<Result>> Get()
+        public async Task<ActionResult<Result<IEnumerable<MenuOutputModel>>>> Get()
         {
             try
             {
@@ -85,7 +86,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<IEnumerable<MenuOutputModel>>(ex);
             }
         }
 
@@ -93,7 +94,7 @@ namespace Styme.API.Controllers
         /// Busca um menu por Id
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Result>> GetById(long id)
+        public async Task<ActionResult<Result<MenuOutputModel>>> GetById(long id)
         {
             try
             {
@@ -103,7 +104,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<MenuOutputModel>(ex);
             }
         }
     }
