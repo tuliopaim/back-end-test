@@ -88,9 +88,16 @@ namespace Styme.Data.Repository
 
         public async Task<long> TotalWithFilter(RestaurantPaginatedFilter filter)
         {
-            return await _context
+            var query = _context
                 .Restaurants
-                .Where(r => r.Name.Contains(filter.Name))
+                .AsQueryable<Restaurant>();
+
+            if (!string.IsNullOrWhiteSpace(filter.Name))
+            {
+                query = query.Where(r => r.Name.Contains(filter.Name));
+            }
+
+            return await query
                 .CountAsync();
         }
     }
