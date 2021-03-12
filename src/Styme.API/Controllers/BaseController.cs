@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
 using System;
 
 namespace Styme.API.Controllers
@@ -9,9 +9,9 @@ namespace Styme.API.Controllers
     [ApiController]
     public abstract class BaseController : Controller
     {
-        protected ActionResult<ServiceResult> ReturnResult(ServiceResult result)
+        protected ActionResult<Result> ReturnResult(Result result)
         {
-            if (result.Success)
+            if (result.Succeeded)
             {
                 return Ok(result);
             }
@@ -19,9 +19,27 @@ namespace Styme.API.Controllers
             return BadRequest(result);
         }
 
-        protected ActionResult<ServiceResult> ReturnResult(Exception exception)
+        protected ActionResult<Result> ReturnResult(Exception exception)
         {
-            var result = new ServiceResult(exception);
+            var result = new Result(exception);
+
+            return BadRequest(result);
+        }
+
+        protected ActionResult<Result<T>> ReturnResult<T>(
+            Result<T> result)
+        {
+            if (result.Succeeded)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        protected ActionResult<Result<T>> ReturnResult<T>(Exception exception)
+        {
+            var result = new Result(exception);
 
             return BadRequest(result);
         }

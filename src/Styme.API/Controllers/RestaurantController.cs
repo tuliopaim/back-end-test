@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Styme.Core.Results;
 using Styme.Domain.Filters;
 using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
@@ -22,7 +23,7 @@ namespace Styme.API.Controllers
         /// Cria um novo restaurante
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<ServiceResult>> Create([FromBody] NewRestaurantInputModel input)
+        public async Task<ActionResult<Result>> Create([FromBody] NewRestaurantInputModel input)
         {
             try
             {
@@ -40,7 +41,7 @@ namespace Styme.API.Controllers
         /// Atualiza um restaurante existente
         /// </summary>
         [HttpPut]
-        public async Task<ActionResult<ServiceResult>> Update([FromBody] UpdateRestaurantInputModel input)
+        public async Task<ActionResult<Result>> Update([FromBody] UpdateRestaurantInputModel input)
         {
             try
             {
@@ -58,7 +59,7 @@ namespace Styme.API.Controllers
         /// Deleta um restaurante existente
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResult>> Delete(long id)
+        public async Task<ActionResult<Result>> Delete(long id)
         {
             try
             {
@@ -76,7 +77,7 @@ namespace Styme.API.Controllers
         /// Busca todos os restaurantes
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<ServiceResult>> Get()
+        public async Task<ActionResult<Result<IEnumerable<RestaurantOutputModel>>>> Get()
         {
             try
             {
@@ -86,7 +87,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<IEnumerable<RestaurantOutputModel>>(ex);
             }
         }
 
@@ -94,7 +95,7 @@ namespace Styme.API.Controllers
         /// Busca um restaurante por Id
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResult>> GetById(long id)
+        public async Task<ActionResult<Result<RestaurantOutputModel>>> GetById(long id)
         {
             try
             {
@@ -104,7 +105,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<RestaurantOutputModel>(ex);
             }
         }
 

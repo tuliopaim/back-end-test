@@ -1,22 +1,23 @@
 ﻿using Styme.Domain.Filters;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.Service.Interfaces
 {
     public interface IRestaurantService
     {
-        Task<ServiceResult> Add(NewRestaurantInputModel input);
+        Task<Result> Add(NewRestaurantInputModel input);
 
-        Task<ServiceResult> Update(UpdateRestaurantInputModel input);
+        Task<Result> Update(UpdateRestaurantInputModel input);
 
-        Task<ServiceResult> Delete(long id);
+        Task<Result> Delete(long id);
 
-        Task<ServiceResult> Select();
+        Task<Result<IEnumerable<RestaurantOutputModel>>> Select();
 
-        Task<ServiceResult> SelectById(long id);
+        Task<Result<RestaurantOutputModel>> SelectById(long id);
 
         Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(RestaurantPaginatedFilter filter);
     }

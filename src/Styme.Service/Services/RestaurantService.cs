@@ -5,7 +5,9 @@ using Styme.Domain.Interfaces.Repository;
 using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
+using Styme.Core.Results;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,74 +26,74 @@ namespace Styme.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult> Add(NewRestaurantInputModel input)
+        public async Task<Result> Add(NewRestaurantInputModel input)
         {
             if (!input.IsValid)
             {
-                return new ServiceResult(input.ValidationResult);
+                return new Result(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Insert(restaurant);
 
-            return ServiceResult.SuccessResult();
+            return Result.SuccessResult();
         }
 
-        public async Task<ServiceResult> Update(UpdateRestaurantInputModel input)
+        public async Task<Result> Update(UpdateRestaurantInputModel input)
         {
             if (!input.IsValid)
             {
-                return new ServiceResult(input.ValidationResult);
+                return new Result(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Restaurant>(input);
 
             await _repository.Update(restaurant);
 
-            return ServiceResult.SuccessResult();
+            return Result.SuccessResult();
         }
 
-        public async Task<ServiceResult> Delete(long id)
+        public async Task<Result> Delete(long id)
         {
             if(id <= 0)
             {
-                return ServiceResult.ErrorResult(message: "Id inválido");
+                return Result.ErrorResult(message: "Id inválido");
             }
 
             if(await _repository.Delete(id))
             {
-                return ServiceResult.SuccessResult(message: "Removido com sucesso");
+                return Result.SuccessResult(message: "Removido com sucesso");
             }
 
-            return ServiceResult.ErrorResult(message: "Não encontrado");
+            return Result.ErrorResult(message: "Não encontrado");
         }
 
-        public async Task<ServiceResult> Select()
+        public async Task<Result<IEnumerable<RestaurantOutputModel>>> Select()
         {
             var restaurants = await _repository.Select();
 
             var output = restaurants?.Select(_mapper.Map<RestaurantOutputModel>);
 
-            return output is null
-                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
-                : ServiceResult.SuccessResult(data: output);
+            output ??= new List<RestaurantOutputModel>();
+
+            return Result<IEnumerable<RestaurantOutputModel>>.SuccessResult(output);
         }
 
-        public async Task<ServiceResult> SelectById(long id)
+        public async Task<Result<RestaurantOutputModel>> SelectById(long id)
         {
             if (id <= 0)
             {
-                return ServiceResult.ErrorResult(message: "Id inválido");
+                return Result<RestaurantOutputModel>
+                    .ErrorResult()
+                    .AddError("Id inválido!");
             }
 
             var restaurant = await _repository.SelectById(id);
 
             var output = _mapper.Map<RestaurantOutputModel>(restaurant);
 
-            return output is null
-                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
-                : ServiceResult.SuccessResult(data: output);
+            return Result<RestaurantOutputModel>.SuccessResult(output);
         }
 
         public async Task<PaginatedResult<RestaurantOutputModel>> SelectPaginated(RestaurantPaginatedFilter filter)
@@ -100,10 +102,9 @@ namespace Styme.Service.Services
             var results = await _repository.SelectPaginated(filter);
 
             return new PaginatedResult<RestaurantOutputModel>(
-                results: results?.Select(_mapper.Map<RestaurantOutputModel>),
-                total: total,
-                page: filter.Page,
-                pageSize: filter.PageSize);
+                results?.Select(_mapper.Map<RestaurantOutputModel>),
+                total,
+                filter);
         }
     }
 }

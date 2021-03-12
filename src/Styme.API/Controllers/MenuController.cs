@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Styme.Core.Results;
 using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
-using Styme.Service.Models.Results;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.API.Controllers
@@ -21,7 +22,7 @@ namespace Styme.API.Controllers
         /// Cria um novo menu
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<ServiceResult>> Create([FromBody] NewMenuInputModel input)
+        public async Task<ActionResult<Result>> Create([FromBody] NewMenuInputModel input)
         {
             try
             {
@@ -39,7 +40,7 @@ namespace Styme.API.Controllers
         /// Atualiza um menu existente
         /// </summary>
         [HttpPut]
-        public async Task<ActionResult<ServiceResult>> Update([FromBody] UpdateMenuInputModel input)
+        public async Task<ActionResult<Result>> Update([FromBody] UpdateMenuInputModel input)
         {
             try
             {
@@ -57,7 +58,7 @@ namespace Styme.API.Controllers
         /// Deleta um menu existente
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResult>> Delete(long id)
+        public async Task<ActionResult<Result>> Delete(long id)
         {
             try
             {
@@ -75,7 +76,7 @@ namespace Styme.API.Controllers
         /// Busca todos os menus
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<ServiceResult>> Get()
+        public async Task<ActionResult<Result<IEnumerable<MenuOutputModel>>>> Get()
         {
             try
             {
@@ -85,7 +86,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<IEnumerable<MenuOutputModel>>(ex);
             }
         }
 
@@ -93,7 +94,7 @@ namespace Styme.API.Controllers
         /// Busca um menu por Id
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResult>> GetById(long id)
+        public async Task<ActionResult<Result<MenuOutputModel>>> GetById(long id)
         {
             try
             {
@@ -103,7 +104,7 @@ namespace Styme.API.Controllers
             }
             catch (Exception ex)
             {
-                return ReturnResult(ex);
+                return ReturnResult<MenuOutputModel>(ex);
             }
         }
     }

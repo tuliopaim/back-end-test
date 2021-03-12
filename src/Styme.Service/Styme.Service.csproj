@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Styme.Core\Styme.Core.csproj" />
     <ProjectReference Include="..\Styme.Data\Styme.Data.csproj" />
     <ProjectReference Include="..\Styme.Domain\Styme.Domain.csproj" />
   </ItemGroup>
