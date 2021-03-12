@@ -21,7 +21,7 @@ namespace Styme.API.Controllers
         /// Cria um novo menu
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<ServiceResult>> Create([FromBody] NewMenuInputModel input)
+        public async Task<ActionResult<Result>> Create([FromBody] NewMenuInputModel input)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace Styme.API.Controllers
         /// Atualiza um menu existente
         /// </summary>
         [HttpPut]
-        public async Task<ActionResult<ServiceResult>> Update([FromBody] UpdateMenuInputModel input)
+        public async Task<ActionResult<Result>> Update([FromBody] UpdateMenuInputModel input)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Styme.API.Controllers
         /// Deleta um menu existente
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResult>> Delete(long id)
+        public async Task<ActionResult<Result>> Delete(long id)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Styme.API.Controllers
         /// Busca todos os menus
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<ServiceResult>> Get()
+        public async Task<ActionResult<Result>> Get()
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Styme.API.Controllers
         /// Busca um menu por Id
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResult>> GetById(long id)
+        public async Task<ActionResult<Result>> GetById(long id)
         {
             try
             {

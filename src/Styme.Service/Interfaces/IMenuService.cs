@@ -1,19 +1,21 @@
 ﻿using Styme.Service.Models.InputModels;
+using Styme.Service.Models.OutputModels;
 using Styme.Service.Models.Results;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Styme.Service.Interfaces
 {
     public interface IMenuService
     {
-        Task<ServiceResult> Add(NewMenuInputModel input);
+        Task<Result> Add(NewMenuInputModel input);
 
-        Task<ServiceResult> Update(UpdateMenuInputModel input);
+        Task<Result> Update(UpdateMenuInputModel input);
 
-        Task<ServiceResult> Delete(long id);
+        Task<Result> Delete(long id);
 
-        Task<ServiceResult> Select();
+        Task<IEnumerable<MenuOutputModel>> Select();
 
-        Task<ServiceResult> SelectById(long id);
+        Task<MenuOutputModel> SelectById(long id);
     }
 }

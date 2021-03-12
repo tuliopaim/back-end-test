@@ -22,7 +22,7 @@ namespace Styme.API.Controllers
         /// Cria um novo restaurante
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<ServiceResult>> Create([FromBody] NewRestaurantInputModel input)
+        public async Task<ActionResult<Result>> Create([FromBody] NewRestaurantInputModel input)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Styme.API.Controllers
         /// Atualiza um restaurante existente
         /// </summary>
         [HttpPut]
-        public async Task<ActionResult<ServiceResult>> Update([FromBody] UpdateRestaurantInputModel input)
+        public async Task<ActionResult<Result>> Update([FromBody] UpdateRestaurantInputModel input)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Styme.API.Controllers
         /// Deleta um restaurante existente
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ServiceResult>> Delete(long id)
+        public async Task<ActionResult<Result>> Delete(long id)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace Styme.API.Controllers
         /// Busca todos os restaurantes
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<ServiceResult>> Get()
+        public async Task<ActionResult<Result>> Get()
         {
             try
             {
@@ -94,7 +94,7 @@ namespace Styme.API.Controllers
         /// Busca um restaurante por Id
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceResult>> GetById(long id)
+        public async Task<ActionResult<Result>> GetById(long id)
         {
             try
             {

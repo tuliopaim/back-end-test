@@ -5,6 +5,7 @@ using Styme.Service.Interfaces;
 using Styme.Service.Models.InputModels;
 using Styme.Service.Models.OutputModels;
 using Styme.Service.Models.Results;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,74 +24,72 @@ namespace Styme.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<ServiceResult> Add(NewMenuInputModel input)
+        public async Task<Result> Add(NewMenuInputModel input)
         {
             if (!input.IsValid)
             {
-                return new ServiceResult(input.ValidationResult);
+                return new Result(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Menu>(input);
 
             await _repository.Insert(restaurant);
 
-            return ServiceResult.SuccessResult();
+            return Result.SuccessResult();
         }
 
-        public async Task<ServiceResult> Update(UpdateMenuInputModel input)
+        public async Task<Result> Update(UpdateMenuInputModel input)
         {
             if (!input.IsValid)
             {
-                return new ServiceResult(input.ValidationResult);
+                return new Result(input.ValidationResult);
             }
 
             var restaurant = _mapper.Map<Menu>(input);
 
             await _repository.Update(restaurant);
 
-            return ServiceResult.SuccessResult();
+            return Result.SuccessResult();
         }
 
-        public async Task<ServiceResult> Delete(long id)
+        public async Task<Result> Delete(long id)
         {
             if (id <= 0)
             {
-                return ServiceResult.ErrorResult(message: "Id inválido");
+                return Result.ErrorResult(message: "Id inválido");
             }
 
             if (await _repository.Delete(id))
             {
-                return ServiceResult.SuccessResult(message: "Removido com sucesso");
+                return Result.SuccessResult(message: "Removido com sucesso");
             }
 
-            return ServiceResult.ErrorResult(message: "Não encontrado");
+            return Result.ErrorResult(message: "Não encontrado");
         }
 
-        public async Task<ServiceResult> Select()
+        public async Task<Result<IEnumerable<MenuOutputModel>>> Select()
         {
             var menus = await _repository.Select();
 
             var output = menus?.Select(_mapper.Map<MenuOutputModel>);
 
-            return output is null
-                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
-                : ServiceResult.SuccessResult(data: output);
+            output ??= new List<MenuOutputModel>();
+
+            return Result<IEnumerable<MenuOutputModel>>.SuccessResult(output);
         }
 
-        public async Task<ServiceResult> SelectById(long id)
+        public async Task<MenuOutputModel> SelectById(long id)
         {
             if (id <= 0)
             {
-                return ServiceResult.ErrorResult(message: "Id inválido");
+                return Result.ErrorResult(message: "Id inválido");
             }
 
             var menu = await _repository.SelectById(id);
 
             var output = _mapper.Map<MenuOutputModel>(menu);
 
-            return output is null
-                ? ServiceResult.SuccessResult(message: "Nenhum registro encontrado")
-                : ServiceResult.SuccessResult(data: output);
+            return Result<MenuOutputModel>.SuccessResult(output);
         }
     }
 }
